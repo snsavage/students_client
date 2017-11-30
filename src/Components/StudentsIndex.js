@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import * as actions from '../Actions/StudentActions';
 
@@ -16,7 +17,7 @@ class StudentsIndex extends Component {
       const { firstName, lastName } = studentsById[id];
 
       return <li key={id}>
-        { `${firstName} ${lastName}` }
+        { `${firstName} ${lastName}` } - <Link to={`/students/${id}`}>View</Link>
       </li>
     });
 

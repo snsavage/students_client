@@ -1,3 +1,3 @@
 export default {
-  students: { studentsById: {}, studentIds: [] },
+  students: { studentsById: {}, studentIds: [], student: {} },
 }

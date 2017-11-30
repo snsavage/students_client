@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import './App.css';
 import StudentsIndex from './Components/StudentsIndex.js';
+import StudentShow from './Components/StudentShow';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
         <main>
           <Switch>
             <Route exact path="/" componet={StudentsIndex} />
+            <Route path="/students/:studentId" component={StudentShow} />
             <Route path="/students" component={StudentsIndex} />
           </Switch>
         </main>
