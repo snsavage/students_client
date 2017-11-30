@@ -32,5 +32,20 @@ export default class StudentApi {
         return error;
       });
   }
+
+  static createStudent(student) {
+    const request = new Request(`/api/students/`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(student),
+    });
+
+    return fetch(request)
+      .then(handleErrors)
+      .then(response => { return response.json(); })
+      .catch((error) => {
+        return error;
+      });
+  }
 }
 

@@ -14,6 +14,10 @@ export function removeStudent() {
   return { type: types.REMOVE_STUDENT };
 }
 
+export function createStudentSuccess() {
+  return { type: types.CREATE_STUDENT_SUCCESS };
+}
+
 export function fetchStudents() {
   return(dispatch) => {
     return StudentApi.getAllStudents()
@@ -30,6 +34,18 @@ export function fetchStudent(studentId) {
     return StudentApi.getStudent(studentId)
       .then(student => {
         dispatch(loadStudentSuccess(student));
+      }).catch(error => {
+        throw(error);
+      });
+  };
+}
+
+export function createStudent(student) {
+  return(dispatch) => {
+    return StudentApi.createStudent(student)
+      .then(student => {
+        dispatch(createStudentSuccess(student));
+        return student.id;
       }).catch(error => {
         throw(error);
       });
