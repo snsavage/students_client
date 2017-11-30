@@ -28,6 +28,9 @@ export default function StudentReducer(state = initialState.students, action) {
     case types.EDIT_STUDENT_SUCCESS:
       return Object.assign({}, state, { student: action.student });
 
+    case types.DELETE_STUDENT_SUCCESS:
+      return Object.assign({}, state, { student: {} });
+
     default:
       return state;
   }

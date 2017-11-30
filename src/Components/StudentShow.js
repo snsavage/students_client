@@ -21,6 +21,14 @@ class StudentShow extends Component {
     this.props.actions.removeStudent();
   }
 
+  handleDeleteOnClick = (event) => {
+    event.preventDefault();
+    if (window.confirm("Are you sure?")) {
+      this.props.actions.deleteStudent(this.props.student.id);
+      this.props.history.push("/students");
+    }
+  }
+
   render() {
     if (this.props.student === undefined ||
       this.props.student.id === undefined) {
@@ -31,13 +39,22 @@ class StudentShow extends Component {
       const { id, firstName, lastName, email, age, grade } = this.props.student;
 
       return <div>
-        <h1>{`${firstName} ${lastName}`}</h1>
+        <h3>{`${firstName} ${lastName}`}</h3>
         <ul>
           <li>EMail: {email}</li>
           <li>Age: {age}</li>
           <li>Grade: {grade}</li>
         </ul>
-        <Link to={`/students/${id}/edit`}>Edit Student</Link>
+        <h4>Manage Student</h4>
+        <Link to={`/students/${id}/edit`}>
+          <button>
+            Edit Student
+          </button>
+        </Link>
+        <button
+          onClick={(event) => this.handleDeleteOnClick(event)}>
+          Delete Student
+        </button>
       </div>
     }
   }

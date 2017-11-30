@@ -62,5 +62,19 @@ export default class StudentApi {
         return error;
       });
   }
+
+  static deleteStudent(studentId) {
+    const request = new Request(`/api/students/${studentId}`, {
+      method: 'DELETE',
+      headers: {'Content-Type': 'application/json'},
+    });
+
+    return fetch(request)
+      .then(handleErrors)
+      .then(response => { return response.json(); })
+      .catch((error) => {
+        return error;
+      });
+  }
 }
 
