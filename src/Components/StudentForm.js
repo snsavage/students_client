@@ -1,43 +1,28 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
 
-import * as actions from '../Actions/StudentActions';
-
-class StudentForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      age: 0,
-      grade: 0,
-    }
-  }
-
+export default class StudentForm extends Component {
   handleOnChange = (event) => {
-    const { name, value } = event.target;
-    this.setState({[name]: value});
+    this.props.onChange(event);
   }
 
   handleOnSubmit = (event) => {
     event.preventDefault();
-    this.props.actions.createStudent(this.state)
-      .then((id) => this.props.history.push(`/students/${id}`));
+    this.props.onSubmit(event);
   }
 
   render() {
+    const { firstName, lastName, email, age, grade } = this.props.student;
+    const { submitText } = this.props;
+
     return (
       <div>
-        <h1>Create Student</h1>
         <form onSubmit={(event) => this.handleOnSubmit(event)}>
           <div>
             <label>First Name:&nbsp;
               <input
                 name="firstName"
                 type="text"
-                value={this.state.firstName}
+                value={firstName}
                 onChange={(event) => this.handleOnChange(event)} />
             </label>
           </div>
@@ -46,7 +31,7 @@ class StudentForm extends Component {
               <input
                 name="lastName"
                 type="text"
-                value={this.state.lastName}
+                value={lastName}
                 onChange={(event) => this.handleOnChange(event)} />
             </label>
           </div>
@@ -55,7 +40,7 @@ class StudentForm extends Component {
               <input
                 name="email"
                 type="text"
-                value={this.state.email}
+                value={email}
                 onChange={(event) => this.handleOnChange(event)} />
             </label>
           </div>
@@ -66,7 +51,7 @@ class StudentForm extends Component {
                 type="number"
                 step="1"
                 min="0"
-                value={this.state.age}
+                value={age}
                 onChange={(event) => this.handleOnChange(event)} />
             </label>
           </div>
@@ -77,22 +62,15 @@ class StudentForm extends Component {
                 type="number"
                 step="1"
                 min="0"
-                value={this.state.grade}
+                value={grade}
                 onChange={(event) => this.handleOnChange(event)} />
             </label>
           </div>
           <div>
-            <input type="submit" value="Create Student" />
+            <input type="submit" value={submitText} />
           </div>
         </form>
       </div>
     );
   }
 }
-
-const mapDispatchToProps = (dispatch) => {
-  return { actions: bindActionCreators(actions, dispatch)};
-}
-
-export default connect(null, mapDispatchToProps)(StudentForm);
-

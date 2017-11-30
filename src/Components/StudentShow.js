@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import * as actions from '../Actions/StudentActions';
 
 class StudentShow extends Component {
   componentWillMount() {
-    const { studentId, history } = this.props;
-    this.props.actions.fetchStudent(studentId, history);
+    this.props.actions.fetchStudent(this.props.studentId);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,7 +28,7 @@ class StudentShow extends Component {
         <p><strong>Loading...</strong></p>
       </div>
     } else {
-      const { firstName, lastName, email, age, grade } = this.props.student;
+      const { id, firstName, lastName, email, age, grade } = this.props.student;
 
       return <div>
         <h1>{`${firstName} ${lastName}`}</h1>
@@ -37,6 +37,7 @@ class StudentShow extends Component {
           <li>Age: {age}</li>
           <li>Grade: {grade}</li>
         </ul>
+        <Link to={`/students/${id}/edit`}>Edit Student</Link>
       </div>
     }
   }

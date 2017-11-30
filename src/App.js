@@ -5,7 +5,8 @@ import { NavLink } from 'react-router-dom';
 import './App.css';
 import StudentsIndex from './Components/StudentsIndex.js';
 import StudentShow from './Components/StudentShow';
-import StudentForm from './Components/StudentForm';
+import CreateStudent from './Components/CreateStudent';
+import EditStudent from './Components/EditStudent';
 
 class App extends Component {
   render() {
@@ -21,7 +22,8 @@ class App extends Component {
         <main>
           <Switch>
             <Route exact path="/" componet={StudentsIndex} />
-            <Route path="/students/new" component={StudentForm} />
+            <Route path="/students/new" component={CreateStudent} />
+            <Route path="/students/:studentId/edit" component={EditStudent} />
             <Route path="/students/:studentId" component={StudentShow} />
             <Route path="/students" component={StudentsIndex} />
           </Switch>
