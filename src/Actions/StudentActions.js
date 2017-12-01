@@ -29,22 +29,14 @@ export function deleteStudentSuccess() {
 export function fetchStudents() {
   return(dispatch) => {
     return StudentApi.getAllStudents()
-      .then(students => {
-        dispatch(loadStudentsSuccess(students));
-      }).catch(error => {
-        throw(error);
-      });
+      .then(students => { dispatch(loadStudentsSuccess(students)); });
   };
 }
 
-export function fetchStudent(studentId) {
+export function fetchStudent(studentId, history) {
   return(dispatch) => {
     return StudentApi.getStudent(studentId)
-      .then(student => {
-        dispatch(loadStudentSuccess(student));
-      }).catch(error => {
-        throw(error);
-      });
+      .then(student => { dispatch(loadStudentSuccess(student)); });
   };
 }
 
@@ -55,7 +47,7 @@ export function createStudent(student) {
         dispatch(createStudentSuccess(student));
         return student.id;
       }).catch(error => {
-        throw(error);
+        console.log(error);
       });
   };
 }
@@ -67,7 +59,7 @@ export function editStudent(student) {
         dispatch(editStudentSuccess(student));
         return student.id;
       }).catch(error => {
-        throw(error);
+        console.log(error);
       });
   };
 }
@@ -79,7 +71,7 @@ export function deleteStudent(studentId) {
         dispatch(deleteStudentSuccess);
         return student.id;
       }).catch(error => {
-        throw(error);
+        console.log(error);
       });
   };
 }

@@ -4,7 +4,6 @@ function handleErrors(response) {
   if (!response.ok) {
     throw Error(response.statusText);
   }
-
   return response;
 }
 
@@ -15,7 +14,6 @@ export default class StudentApi {
     });
 
     return fetch(request)
-      .then(handleErrors)
       .then(response => { return response.json(); })
       .catch(error => { return error; });
   }
@@ -26,11 +24,8 @@ export default class StudentApi {
     });
 
     return fetch(request)
-      .then(handleErrors)
       .then(response => { return response.json(); })
-      .catch((error) => {
-        return error;
-      });
+      .catch(error => { return error; });
   }
 
   static createStudent(student) {
@@ -43,9 +38,6 @@ export default class StudentApi {
     return fetch(request)
       .then(handleErrors)
       .then(response => { return response.json(); })
-      .catch((error) => {
-        return error;
-      });
   }
 
   static editStudent(student) {
@@ -56,11 +48,7 @@ export default class StudentApi {
     });
 
     return fetch(request)
-      .then(handleErrors)
       .then(response => { return response.json(); })
-      .catch((error) => {
-        return error;
-      });
   }
 
   static deleteStudent(studentId) {
@@ -70,11 +58,7 @@ export default class StudentApi {
     });
 
     return fetch(request)
-      .then(handleErrors)
       .then(response => { return response.json(); })
-      .catch((error) => {
-        return error;
-      });
   }
 }
 
